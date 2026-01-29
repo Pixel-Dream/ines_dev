@@ -98,4 +98,4 @@ pylint ines/
 - When build/test commands are added to the project, update this file with specific instructions.
 - Follow scientific computing best practices for numerical stability and performance.
 - Document any statistical methods or algorithms clearly.
-- Trust these instructions but verify the current state of the repository, as it's evolving rapidly in early development.
+- Use these instructions as guidance while verifying the current repository state, as it's evolving rapidly in early development.
