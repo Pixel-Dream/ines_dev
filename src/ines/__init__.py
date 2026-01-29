@@ -11,7 +11,7 @@ __author__ = "INES Development Team"
 from .metrics import earth_movers_distance, calculate_ines_score
 from .design import greedy_probe_selection, optimize_gene_panel
 from .models import ImputationSimulator
-from .utils import parallelize, setup_hpc_environment
+from .utils import parallelize, setup_hpc_environment, validate_adata
 
 __all__ = [
     "earth_movers_distance",
@@ -21,4 +21,5 @@ __all__ = [
     "ImputationSimulator",
     "parallelize",
     "setup_hpc_environment",
+    "validate_adata",
 ]

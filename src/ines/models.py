@@ -40,8 +40,11 @@ class ImputationSimulator:
         self.device = device
         self.random_state = random_state
         
+        # Create a dedicated random state for reproducibility
         if random_state is not None:
-            np.random.seed(random_state)
+            self.rng = np.random.RandomState(random_state)
+        else:
+            self.rng = np.random.RandomState()
         
         # Check if PyTorch is available
         try:
@@ -75,8 +78,8 @@ class ImputationSimulator:
         np.ndarray
             Imputed expression matrix
         """
-        # Create dropout mask
-        dropout_mask = np.random.rand(*data.shape) < dropout_rate
+        # Create dropout mask using instance random state
+        dropout_mask = self.rng.rand(*data.shape) < dropout_rate
         data_dropout = data.copy()
         data_dropout[dropout_mask] = 0
         
@@ -92,9 +95,9 @@ class ImputationSimulator:
         else:
             raise ValueError(f"Unknown model type: {self.model_type}")
         
-        # Add noise
+        # Add noise using instance random state
         if noise_level > 0:
-            noise = np.random.randn(*imputed.shape) * noise_level * np.std(data)
+            noise = self.rng.randn(*imputed.shape) * noise_level * np.std(data)
             imputed = imputed + noise
             imputed = np.maximum(imputed, 0)  # Ensure non-negative
         

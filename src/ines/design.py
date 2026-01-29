@@ -6,7 +6,7 @@ for spatial transcriptomics experiments (MERFISH, Xenium).
 """
 
 import numpy as np
-from typing import List, Tuple, Optional, Dict, Callable
+from typing import List, Tuple, Optional, Dict, Callable, Any
 import warnings
 
 
@@ -107,7 +107,7 @@ def optimize_gene_panel(
     strategy: str = "ines",
     hvg_n_top: int = 2000,
     correlation_threshold: float = 0.3,
-) -> Dict[str, any]:
+) -> Dict[str, Any]:
     """
     Optimize gene panel selection for spatial transcriptomics.
     
