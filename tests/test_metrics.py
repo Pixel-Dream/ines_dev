@@ -131,6 +131,7 @@ class TestEdgeCases:
         original = np.array([]).reshape(0, 10)
         imputed = np.array([]).reshape(0, 10)
         
-        # Should handle gracefully or raise informative error
-        with pytest.raises((ValueError, IndexError)):
-            calculate_ines_score(original, imputed)
+        # Empty arrays should return empty scores array
+        scores = calculate_ines_score(original, imputed)
+        assert len(scores) == 10
+        assert np.all(scores == 0.0)

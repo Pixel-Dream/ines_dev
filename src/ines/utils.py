@@ -285,6 +285,9 @@ def chunk_array(
     List[np.ndarray]
         List of array chunks
     """
+    if axis >= len(array.shape):
+        raise ValueError(f"axis {axis} is out of bounds for array with {len(array.shape)} dimensions. Only axis=0 or axis=1 supported")
+    
     n_elements = array.shape[axis]
     n_chunks = (n_elements + chunk_size - 1) // chunk_size
     
